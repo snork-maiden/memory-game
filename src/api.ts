@@ -7,12 +7,11 @@ export async function fetchRandomPhotos(
 ): Promise<CardData[]> {
   const params = new URLSearchParams({
     count: count + "",
-    orientation: "squarish",
   });
 
   try {
     const response = await fetch(
-      `https://api.unsplash.com/photos/random?${params.toString()}`,
+      `https://api.unsplash.com/photos/random?${params}`,
       {
         headers: {
           Authorization: `Client-ID ${apiKey}`,
@@ -25,9 +24,10 @@ export async function fetchRandomPhotos(
     }
 
     const photos = await response.json();
-    const formattedPhotos = photos.map((photo: any) => ({
+    const formattedPhotos: CardData[] = photos.map((photo: any) => ({
       id: photo.id,
       url: photo.urls.small,
+      description: photo.description,
     }));
 
     if (formattedPhotos.length < count) {
