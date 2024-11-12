@@ -4,12 +4,16 @@ defineProps<{
   alt: string;
   isOpen: boolean;
 }>();
+
+defineEmits<{
+  (e: "open"): void;
+}>();
 </script>
 
 <template>
   <div class="card">
     <img :src="imageSrc" :alt="alt" class="img" v-show="isOpen" />
-    <div class="card-back" v-show="!isOpen"></div>
+    <div class="card-back" v-show="!isOpen" @click="$emit('open')"></div>
   </div>
 </template>
 
