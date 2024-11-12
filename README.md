@@ -17,6 +17,13 @@
 npm install
 ```
 
+**Unsplash API Key**: Sign up on [Unsplash](https://unsplash.com/developers) and follow their steps to get an API key.
+
+Add your Unsplash API key to the `.env` file in the root directory:
+     ```env
+     VITE_UNSPLASH_ACCESS_KEY=your_access_key_here
+     ```
+
 ### Compile and Hot-Reload for Development
 
 ```sh
