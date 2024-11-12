@@ -31,7 +31,7 @@ async function getMemoryCards() {
 
   setTimeout(() => {
     memoryCards.value!.forEach((item) => (item.isOpen = false));
-  }, 8000);
+  }, 6000);
 
   function shuffle(array: Array<any>): Array<any> {
     for (let i = array.length - 1; i > 0; i--) {
@@ -58,7 +58,7 @@ function openCard(card: MemoryCardData): void {
     return;
   }
 
-  setTimeout(() => closeOpenCards(), 2000);
+  setTimeout(() => closeOpenCards(), 1500);
 
   function closeOpenCards(): void {
     openMemoryCards.value.forEach((card) => {
@@ -83,6 +83,7 @@ function openCard(card: MemoryCardData): void {
       :image-src="card.url"
       :alt="card.description"
       :is-open="card.isOpen"
+      :clickable="openMemoryCards.length < 2"
       @open="openCard(card)"
     />
   </div>
