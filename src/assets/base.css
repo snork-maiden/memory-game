@@ -4,13 +4,18 @@
 
   --table-gap: clamp(8px, 2vw, 1em);
   --card-border-radius: 8px;
-  --loader-size: 150px
+  --loader-size: 150px;
+
+  --card-back: white;
+  --card-back-hover: rgb(250, 246, 246);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: #1a1a1a;
     --color-text: #e0e0e0;
+    --card-back: #807f7f;
+    --card-back-hover: #979595;
   }
 }
 *,

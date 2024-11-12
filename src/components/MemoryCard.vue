@@ -70,8 +70,8 @@ defineEmits<{
 }
 
 .card-back {
-  transition: background 0.2s ease;
-  background-color: white;
+  transition: background 0.3s ease, transform 0.3s ease;
+  background-color: var(--card-back);
 }
 
 .card-back--clickable {
@@ -80,8 +80,8 @@ defineEmits<{
 
 @media (hover: hover) {
   .card-back--clickable:hover {
-    transform: scale(1.05);
-    background-color: rgb(250, 246, 246);
+    transform: scale(1.04);
+    background-color: var(--card-back-hover);
   }
 }
 </style>
