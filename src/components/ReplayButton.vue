@@ -11,7 +11,7 @@ import IconReplay from "./icons/IconReplay.vue";
   cursor: pointer;
   border: none;
   background: none;
-  padding: 1em;
+  padding: 0.5em;
   transition: transform 0.2s;
   margin: auto;
   aspect-ratio: 1/1;
