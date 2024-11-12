@@ -13,11 +13,12 @@ import IconReplay from "./icons/IconReplay.vue";
   background: none;
   padding: 1em;
   transition: transform 0.2s;
+  margin: auto;
+  aspect-ratio: 1/1;
 }
-
 .replay:hover,
 .replay:active {
-  transform: scale(1.03);
+  transform: scale(1.06);
   opacity: 0.9;
 }
 </style>

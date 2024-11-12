@@ -4,6 +4,7 @@ import MemoryCard from "./MemoryCard.vue";
 import ReplayButton from "./ReplayButton.vue";
 import { fetchRandomPhotos } from "@/api";
 import type { CardData } from "@/interfaces";
+import LoaderElement from "./LoaderElement.vue";
 
 interface MemoryCardData extends CardData {
   cardId: string;
@@ -12,12 +13,13 @@ interface MemoryCardData extends CardData {
 
 const memoryCards: Ref<MemoryCardData[] | null> = ref(null);
 const openMemoryCards: Ref<MemoryCardData[]> = ref([]);
+const isLoading: Ref<boolean> = ref(true);
 
 onMounted(async () => await getMemoryCards());
 
 async function getMemoryCards() {
   const cardData = await fetchRandomPhotos();
-
+  isLoading.value = false;
   if (!cardData.length) return;
 
   const doubledCards: MemoryCardData[] = cardData
@@ -70,31 +72,63 @@ function openCard(card: MemoryCardData): void {
 </script>
 
 <template>
-  <div class="error" v-if="!memoryCards">
-    Failed to load photos, please try again later
-  </div>
+  <LoaderElement v-if="isLoading" />
+  <template v-else>
+    <div class="error" v-if="!memoryCards">
+      Failed to load photos, please try again later
+    </div>
 
-  <ReplayButton @click="getMemoryCards" />
-
-  <div class="wrapper" v-if="memoryCards">
-    <MemoryCard
-      v-for="card in memoryCards"
-      :key="card.cardId"
-      :image-src="card.url"
-      :alt="card.description"
-      :is-open="card.isOpen"
-      :clickable="openMemoryCards.length < 2"
-      @open="openCard(card)"
-    />
-  </div>
+    <div class="wrapper">
+      <div class="table" v-if="memoryCards">
+        <MemoryCard
+          v-for="card in memoryCards"
+          :key="card.cardId"
+          :image-src="card.url"
+          :alt="card.description"
+          :is-open="card.isOpen"
+          :clickable="openMemoryCards.length < 2"
+          @open="openCard(card)"
+        />
+      </div>
+      <ReplayButton @click="getMemoryCards" class="replay"/>
+    </div>
+  </template>
 </template>
 
 <style scoped>
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1em;
   width: 100%;
-  max-width: 65vh;
+  height: 100%;
+  gap: 2em;
 }
+
+.replay {
+  margin: auto;
+}
+
+@media (min-aspect-ratio: 0.8/1) {
+  .wrapper {
+    grid-template-columns: 1fr auto;
+  }
+  .replay {
+    margin-left: -6.6em;
+  }
+}
+.table {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--table-gap);
+  width: 100%;
+  max-width: 63vh;
+  margin: auto;
+}
+
+.error {
+  margin: auto;
+  text-wrap: balance;
+  text-align: center;
+  font-size: 1.1em;
+}
+
 </style>

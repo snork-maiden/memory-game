@@ -2,8 +2,9 @@
   --color-background: #f4f4f4;
   --color-text: #333333;
 
-  --table-gap: 20px;
+  --table-gap: clamp(8px, 2vw, 1em);
   --card-border-radius: 8px;
+  --loader-size: 150px
 }
 
 @media (prefers-color-scheme: dark) {

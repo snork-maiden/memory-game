@@ -78,8 +78,10 @@ defineEmits<{
   cursor: pointer;
 }
 
-.card-back--clickable:hover {
-  transform: scale(1.05);
-  background-color: rgb(250, 246, 246);
+@media (hover: hover) {
+  .card-back--clickable:hover {
+    transform: scale(1.05);
+    background-color: rgb(250, 246, 246);
+  }
 }
 </style>

@@ -14,5 +14,11 @@ import TheMemoryGame from "./components/TheMemoryGame.vue";
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100%;
+  gap: 2em;
+ }
+
+ .title {
+  font-size: clamp(1.8em, 6vw, 3.5em);
  }
 </style>
